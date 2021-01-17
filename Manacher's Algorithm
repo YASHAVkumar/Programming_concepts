@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<string.h>
+void longestlength(char ptr[100],int n)
+{
+    int arr[100];
+    int l=0;
+    //arr[0]=0;
+    for(int i=0;i<n;i++)
+    {
+       int low=i-1;
+       int high=i+1;
+       int count=0;
+       while(low>=0&&high<n&&ptr[low]==ptr[high])
+       {
+          printf("%c to %c ",ptr[low],ptr[high]);
+           count++;
+           low--;
+           high++;
+       }
+       arr[i]=count;
+       printf("\n");
+    }
+    int max=-1,pos;
+    for(int i=0;i<n;i++)
+       {
+          if(arr[i]>max)
+          { max=arr[i];pos=i;}
+       }
+    printf("%d to %d ",(pos-max)/2,(pos+max)/2-1);
+    //printf("%d ",arr[i]);  
+      
+    
+    return;
+}
+int main() {
+    char ch[100];
+    scanf("%s",ch);
+    char ptr[100];
+     int n=strlen(ch);
+     int n1=2*n+1;
+     ptr[0]='#';
+     int k=0,flag=1;
+     for(int i=1;i<n1;i++)
+     {
+         if(flag==1)
+         {ptr[i]=ch[k++];flag=0;}
+         else
+         {
+             ptr[i]='#';
+             flag=1;
+         }
+         
+     }
+     ptr[n1]='\0';
+   // printf("%s ",ptr); 
+    longestlength(ptr,n1);
+    //printf("\n %d ",num);
+}
